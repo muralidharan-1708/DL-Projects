@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Fashion MNIST Classification</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+
+    <body>
+        <div class="container">
+            <h1 class="app-title">Fashion MNIST Classifier</h1>
+            <p>Upload an image of a fashion item to classify it</p>
+            
+            <form method="post" enctype="multipart/form-data" class="upload-form">
+                <div class="file-input-wrapper">
+                    <input type="file" name="file" accept="image/*" class="file-input" id="file-input" required>
+                    <label for="file-input" class="file-input-button" id="file-label">Choose Image</label>
+                </div>
+                <br>
+                <input type="submit" value="Classify Image" class="submit-btn">
+            </form>
+            
+            <div class="instructions">
+                <strong>Instructions:</strong><br>
+                • Upload a clear image of a fashion item<br>
+                • Supported formats: JPG, PNG, GIF<br>
+                • The AI will classify it into one of 10 categories
+            </div>
+        </div>
+        
+        <script>
+            document.getElementById('file-input').addEventListener('change', function() {
+                const label = document.getElementById('file-label');
+                const fileName = this.files[0] ? this.files[0].name : 'Choose Image';
+                label.textContent = fileName.length > 20 ? fileName.substring(0, 20) + '...' : fileName;
+            });
+        </script>
+    </body>
+</html>
